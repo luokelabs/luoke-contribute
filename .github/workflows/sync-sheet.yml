@@ -1,0 +1,58 @@
+# 把 Discussions → Ideas 全量同步到许愿墙的 Google Sheet（经 Apps Script）。
+# 每次都发全量：新帖、改帖、删帖、⬆️ 数都靠这一份对齐。⬆️ GitHub 不发事件，所以另有每 4 小时一次的定时同步（Jason 10-30）。
+# 需要的 Secrets（仓库 Settings → Secrets and variables → Actions）：SHEET_API_URL、SHEET_API_SECRET，和官网 Cloudflare 里的同一对。
+name: Sync ideas to Google Sheet
+
+on:
+  discussion:
+    types: [created, edited, deleted, category_changed]
+  schedule:
+    - cron: '17 */4 * * *'
+  workflow_dispatch:
+
+permissions:
+  discussions: read
+
+concurrency:
+  group: sync-sheet
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        env:
+          SHEET_API_URL: ${{ secrets.SHEET_API_URL }}
+          SHEET_API_SECRET: ${{ secrets.SHEET_API_SECRET }}
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const cats = await github.graphql(`query($owner:String!,$repo:String!){repository(owner:$owner,name:$repo){discussionCategories(first:50){nodes{id slug}}}}`, { owner, repo });
+            const cat = cats.repository.discussionCategories.nodes.find(c => c.slug === 'ideas');
+            if (!cat) throw new Error('找不到 Ideas 分类');
+
+            const items = [];
+            let after = null;
+            do {
+              const r = await github.graphql(`query($owner:String!,$repo:String!,$cat:ID!,$after:String){repository(owner:$owner,name:$repo){discussions(first:100,categoryId:$cat,after:$after){pageInfo{hasNextPage endCursor}nodes{number url title body createdAt updatedAt upvoteCount author{login}}}}}`, { owner, repo, cat: cat.id, after });
+              const d = r.repository.discussions;
+              for (const n of d.nodes) items.push({
+                number: n.number, url: n.url, title: n.title, body: n.body,
+                createdAt: n.createdAt, updatedAt: n.updatedAt,
+                upvotes: n.upvoteCount, author: n.author?.login ?? '',
+              });
+              after = d.pageInfo.hasNextPage ? d.pageInfo.endCursor : null;
+            } while (after);
+
+            // Apps Script 的 POST 会 302 到 googleusercontent，fetch 跟过去拿回结果（写入在 302 之前已经完成）
+            const res = await fetch(process.env.SHEET_API_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({ secret: process.env.SHEET_API_SECRET, op: 'github_sync', full: true, items }),
+            });
+            const text = await res.text();
+            let out;
+            try { out = JSON.parse(text); } catch { throw new Error(`Apps Script 返回的不是 JSON（${res.status}）：${text.slice(0, 200)}`); }
+            if (!out.ok) throw new Error(`同步失败：${out.error ?? text.slice(0, 200)}`);
+            core.info(`同步了 ${items.length} 条：新增 ${out.added ?? '?'}，更新 ${out.updated ?? '?'}，标记已删 ${out.removed ?? '?'}`);
