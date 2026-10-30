@@ -14,11 +14,12 @@
 
 ## 许个愿
 
-不会写代码也没关系。到 [Discussions → Ideas](https://github.com/luokelabs/luoke-contribute/discussions/categories/ideas) 开一个帖子：
+不会写代码也没关系，想让本地 AI 帮你做什么，两个地方都能说：
 
-- 一个帖子只说一件事，用大白话写清楚：在什么时候、想让它帮你做什么。
-- 看到喜欢的愿望，点 ⬆️ 投一票（没有 GitHub 账号的话，在官网许愿墙上点 ❤️ 也算）。票多的，我们先做。
-- 官网的许愿墙会挑一部分放上去：[luoke.ai/contribute](https://luoke.ai/contribute)。
+- **官网许愿墙**：[luoke.ai/contribute](https://luoke.ai/contribute) 下面的框里写一句，不用账号。写的话不公开，只有螺壳团队看得到。
+- **GitHub**：到 [Discussions → Ideas](https://github.com/luokelabs/luoke-contribute/discussions/categories/ideas) 开一个帖子，大家都看得到、能讨论。一个帖子只说一件事，用大白话写清楚：在什么时候、想让它帮你做什么。
+
+两边的愿望我们都会看，挑一部分整理好放上官网许愿墙。看到喜欢的，在这里点 ⬆️，或者在官网墙上点 ❤️，都算一票。票多的，我们先做。
 
 ## 给已有的项目出力
 
@@ -66,6 +67,6 @@
 
 Luoke is a set of AI apps that run only on your own Mac. This repo is where you take part:
 
-- **Make a wish** — post in [Discussions → Ideas](https://github.com/luokelabs/luoke-contribute/discussions/categories/ideas) what you'd like local AI to do for you, and upvote the ones you like (likes on the luoke.ai wish wall count too). The most-voted get built first.
+- **Make a wish** — tell us what you'd like local AI to do for you, in either place: the box on the [luoke.ai wish wall](https://luoke.ai/en/contribute) (no account needed; only the Luoke team sees it), or a post in [Discussions → Ideas](https://github.com/luokelabs/luoke-contribute/discussions/categories/ideas) (public). We read both and put a selection on the wish wall. Upvote here or like on the wall; the most-voted get built first.
 - **Help an existing project** — go straight to its repo and follow its `CONTRIBUTING.md`: [luoke-mail](https://github.com/luokelabs/luoke-mail) (Mail), [luoke-ime](https://github.com/luokelabs/luoke-ime) (Chinese input method), [luoke-core](https://github.com/luokelabs/luoke-core) (the hub), [luoke-mem](https://github.com/luokelabs/luoke-mem) (memory). Open an issue before sending a pull request. Benchmarks from your Mac go to luoke-core.
 - **Build something new** — open an [issue here](https://github.com/luokelabs/luoke-contribute/issues/new/choose) describing what it does, who it's for, how it runs and where user data goes. We review it together against the rules above (local only, one shared model through Luoke, ask before acting, no secrets), and if it fits, we decide together how it joins Luoke, with your name on it.
