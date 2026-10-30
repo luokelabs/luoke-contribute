@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 许个愿 / Make a wish
+    url: https://github.com/luokelabs/luoke-contribute/discussions/categories/ideas
+    about: 想让本地 AI 帮你做什么，到 Ideas 发帖
+  - name: 邮件助手 / Mail
+    url: https://github.com/luokelabs/luoke-mail/issues
+    about: 邮件助手的问题和改动
+  - name: 输入法 / Input method
+    url: https://github.com/luokelabs/luoke-ime/issues
+    about: 输入法和引擎的问题和改动
+  - name: 螺壳 / Luoke core
+    url: https://github.com/luokelabs/luoke-core/issues
+    about: 模型、安装、更新和你机器上的实测
+  - name: 螺壳记忆 / Memory
+    url: https://github.com/luokelabs/luoke-mem/issues
+    about: 记忆的问题和改动
