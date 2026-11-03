@@ -61,6 +61,8 @@
 
 友好、就事论事。广告、人身攻击、泄露别人隐私的内容会被删掉。
 
+© 2026 螺壳实验室 Luoke Labs。本仓库用 Apache-2.0 许可（见 LICENSE 和 NOTICE）；「螺壳」的名字、图标和品牌素材不随许可授予。
+
 ---
 
 ## English
@@ -70,3 +72,5 @@ Luoke is a set of AI apps that run only on your own Mac. This repo is where you 
 - **Make a wish** — tell us what you'd like local AI to do for you, in either place: the box on the [luoke.ai wish wall](https://luoke.ai/en/contribute) (no account needed; only the Luoke team sees it), or a post in [Discussions → Ideas](https://github.com/luokelabs/luoke-contribute/discussions/categories/ideas) (public). We read both and put a selection on the wish wall. Upvote here or like on the wall; the most-voted get built first.
 - **Help an existing project** — go straight to its repo and follow its `CONTRIBUTING.md`: [luoke-mail](https://github.com/luokelabs/luoke-mail) (Mail), [luoke-ime](https://github.com/luokelabs/luoke-ime) (Chinese input method), [luoke-core](https://github.com/luokelabs/luoke-core) (the hub), [luoke-mem](https://github.com/luokelabs/luoke-mem) (memory). Open an issue before sending a pull request. Benchmarks from your Mac go to luoke-core.
 - **Build something new** — open an [issue here](https://github.com/luokelabs/luoke-contribute/issues/new/choose) describing what it does, who it's for, how it runs and where user data goes. We review it together against the rules above (local only, one shared model through Luoke, ask before acting, no secrets), and if it fits, we decide together how it joins Luoke, with your name on it.
+
+© 2026 Luoke Labs (螺壳实验室). Licensed under Apache-2.0 (see LICENSE and NOTICE); the Luoke name, icons and brand assets are not licensed.
